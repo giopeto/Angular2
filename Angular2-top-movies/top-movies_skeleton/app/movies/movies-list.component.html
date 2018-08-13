@@ -1,0 +1,69 @@
+<div class="container">
+	
+	<h1>{{title}}</h1>
+
+	<div class="row clearfix">
+		<div class="col-md-6 ">
+			<form role="form">
+				<div class="form-group">
+					 <label for="searchString">Search</label>
+					 <input id="searchString" name="searchString" type="text" class="form-control" (input)="onInput($event)"  />
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="mode==='top'">
+		<div class="col-md-3">
+			<form role="form">
+				<div class="form-group">
+					<label for="order">Order</label>
+					<select class="form-control" id="order" (change)="onOrderChange($event)">
+						<option *ngFor="let row of orderCombo" value="{{row.id}}">{{row.name}}</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-3">
+			<form role="form">
+				<div class="form-group">
+					<label for="sort">Sort</label>
+					<select class="form-control" id="sort" (change)="onSortChange($event)">
+						<option *ngFor="let row of sortCombo" value="{{row.id}}">{{row.name}}</option>
+					</select>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="search-results "
+		 infinite-scroll
+		 [infiniteScrollDistance]="2"
+		 [infiniteScrollThrottle]="500"
+		 (scrolled)="onScroll()">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<th>
+						Poster
+					</th>
+					<th>
+						Title
+					</th>
+					<th>
+						Year
+					</th>
+				</thead>
+				<tbody>
+					<ng-container *ngIf="mode==='top'">
+						<tr mvdb-movie-short *ngFor="let movie of (movies | searchMovies:searchString | sortMovies:sort:order)" [movie]="movie"></tr>
+					</ng-container>
+					<ng-container *ngIf="mode==='search'">
+						<tr mvdb-movie-short *ngFor="let movie of movies" [movie]="movie"></tr>
+					</ng-container>
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <!-- <pre>{{movies | json}}</pre> -->
+</div>

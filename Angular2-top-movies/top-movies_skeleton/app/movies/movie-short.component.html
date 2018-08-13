@@ -1,0 +1,14 @@
+<td>
+	<img [src]="poster" [alt]="title" class="rounded"><br><br>
+	<button type="button" (click)="showInfo({imdbID: movie.imdbID})" class="btn btn-danger btn-lg btn-block">More Info</button>
+</td>
+<td class="align-middle">
+	<span class="lead align-center">{{title}}</span><br><br><br><br>
+	{{plot}}<br>
+	Rating:
+	<rating [(ngModel)]="imdbRating" [max]="10" [readonly]="true">
+	</rating><br>
+</td>
+<td class="align-middle">
+	{{year}}
+</td>

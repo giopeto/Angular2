@@ -1,0 +1,23 @@
+<nav id="topNav" class="navbar navbar-dark bg-inverse">
+  <div class="container">
+    <button class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse"
+            data-target="#collapsingNavbar">
+      <!--☰-->
+      <i class="ion-navicon-round"></i>
+    </button>
+    <a class="navbar-brand page-scroll" href="#home">Movie List</a>
+    <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+         <!-- <a class="nav-link page-scroll" href="\#items_list/{{row.id}}">{{row.name}}</a>-->
+          <a routerLink="movies/top" routerLinkActive="active" [queryParams]="{mode: 'top'}" >Top 10 movies</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="movies/search" routerLinkActive="active" [queryParams]="{mode: 'search'}">Search</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<br><br><br><br>
